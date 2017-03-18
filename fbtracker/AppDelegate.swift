@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var backgroundTime: Date?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        self.backgroundTime = Date()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -36,6 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
+        if (self.backgroundTime != nil) {
+            let wakeTime = Date()
+            self.backgroundTime?.addTimeInterval(60 * 5)
+            if (self.backgroundTime! > wakeTime) {
+                return
+            }
+        }
+        
         DispatchQueue.main.async {
             let mainVC = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
             self.window?.rootViewController = mainVC

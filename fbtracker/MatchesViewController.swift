@@ -11,11 +11,13 @@ import UIKit
 class MatchesViewController: UITableViewController {
 
     var matches = [Match]()
+    var postsIndex = [String: Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.matches = TrackerDbService.matches
+        TrackerDbService.posts.forEach { self.postsIndex[$0.id] = $0 }
+        self.matches = TrackerDbService.matches.filter { self.postsIndex[$0.id] != nil }.sorted(by: { (self.postsIndex[$0.id]?.time)! > (self.postsIndex[$1.id]?.time)! })
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,13 +39,24 @@ class MatchesViewController: UITableViewController {
         
         // Fetches the appropriate meal for the data source layout.
         let match = self.matches[indexPath.row]
+        let matchTime = self.postsIndex[match.id]?.time
         
+        let dateFor: DateFormatter = DateFormatter()
+        dateFor.dateFormat = "HH:mm dd/MM/yyyy"
+        
+        cell.matchTime.text = dateFor.string(from: matchTime!)
         cell.matchText.text = match.text
         
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let match = self.matches[indexPath.row]
+        UIApplication.shared.open(URL(string: match.link)!, options: [:], completionHandler: nil)
+    }
 }
 
 class MatchViewCell: UITableViewCell {
+    @IBOutlet weak var matchTime: UILabel!
     @IBOutlet weak var matchText: UILabel!
 }

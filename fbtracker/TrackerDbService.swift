@@ -19,7 +19,7 @@ class TrackerDbService {
         
         var loadedTasks = 0
         
-        let postsTask = URLSession.shared.dataTask(with: getCollectionUrl(collectionName: "posts", filter: "&l=100&s=%7Btime:-1%7D")) { data, response, error in
+        let postsTask = URLSession.shared.dataTask(with: getCollectionUrl(collectionName: "posts", filter: "&l=1000&s=%7Btime:-1%7D")) { data, response, error in
             guard error == nil else {
                 return
             }
