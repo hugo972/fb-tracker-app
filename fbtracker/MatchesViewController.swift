@@ -10,22 +10,49 @@ import UIKit
 
 class MatchesViewController: UITableViewController {
 
-    var matches = [Match]()
+    var matches = [(String, [Match])]()
     var postsIndex = [String: Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isOpaque = true
+        
+        let dateFor: DateFormatter = DateFormatter()
+        dateFor.dateFormat = "dd/MM/yyyy"
+
+        var matchesMap = [String: [Match]]()
         TrackerDbService.posts.forEach { self.postsIndex[$0.id] = $0 }
-        self.matches = TrackerDbService.matches.filter { self.postsIndex[$0.id] != nil }.sorted(by: { (self.postsIndex[$0.id]?.time)! > (self.postsIndex[$1.id]?.time)! })
+        TrackerDbService.matches.forEach {match in
+            let post = self.postsIndex[match.id]
+            if (post == nil) {
+                return
+            }
+            
+            let matchDate = dateFor.string(from: (post?.time)!)
+            if (matchesMap[matchDate] == nil) {
+                matchesMap[matchDate] = [match]
+            } else {
+                matchesMap[matchDate]?.append(match)
+            }
+        }
+        
+        matchesMap.keys.sorted(by: { $0 > $1 }).forEach { matchDate in
+            matches.append((matchDate, (matchesMap[matchDate]?.sorted(by: { (self.postsIndex[$0.id]?.time)! > (self.postsIndex[$1.id]?.time)! }))!))
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.matches.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.matches[section].0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matches.count
+        return self.matches[section].1.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,11 +65,11 @@ class MatchesViewController: UITableViewController {
         }
         
         // Fetches the appropriate meal for the data source layout.
-        let match = self.matches[indexPath.row]
+        let match = self.matches[indexPath.section].1[indexPath.row]
         let matchTime = self.postsIndex[match.id]?.time
         
         let dateFor: DateFormatter = DateFormatter()
-        dateFor.dateFormat = "HH:mm dd/MM/yyyy"
+        dateFor.dateFormat = "HH:mm"
         
         cell.matchTime.text = dateFor.string(from: matchTime!)
         cell.matchText.text = match.text
@@ -51,7 +78,7 @@ class MatchesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let match = self.matches[indexPath.row]
+        let match = self.matches[indexPath.section].1[indexPath.row]
         UIApplication.shared.open(URL(string: match.link)!, options: [:], completionHandler: nil)
     }
     

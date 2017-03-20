@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38C-mi-1B9" id="DoM-VW-Xx8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlo-IC-0jM">
-                                            <rect key="frame" x="8" y="27" width="359" height="104"/>
+                                            <rect key="frame" x="24" y="27" width="343" height="104"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -52,6 +52,7 @@
                             <outlet property="delegate" destination="K9u-2d-xMv" id="ppJ-uf-hnB"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Matches" image="house.png" id="i7g-N8-ZyY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubb-vY-20u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,6 +148,7 @@
         <scene sceneID="2q6-U8-5bP">
             <objects>
                 <tabBarController storyboardIdentifier="MainViewController" id="vbL-kQ-Doj" customClass="MainViewController" customModule="fbtracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Fn0-vn-oA3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
