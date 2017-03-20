@@ -9,6 +9,7 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    @IBOutlet weak var postsCount: UILabel!
     @IBOutlet weak var lastRunTime: UILabel!
     @IBOutlet weak var lastMatchTime: UILabel!
     
@@ -23,6 +24,7 @@ class InfoViewController: UIViewController {
         let dateFor: DateFormatter = DateFormatter()
         dateFor.dateFormat = "HH:mm dd/MM/yyyy"
         
+        self.postsCount.text = "\(TrackerDbService.posts.count) Posts - \(TrackerDbService.matches.count) Matches"
         self.lastRunTime.text = dateFor.string(from: (TrackerDbService.posts.max { $0.time < $1.time }?.time)!)
         self.lastMatchTime.text = dateFor.string(from: (TrackerDbService.posts.filter { $0.match }.max { $0.time < $1.time }?.time)!)
     }

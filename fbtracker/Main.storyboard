@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Matchew-->
+        <!--Matches-->
         <scene sceneID="d9G-lY-QWK">
             <objects>
                 <tableViewController id="K9u-2d-xMv" customClass="MatchesViewController" customModule="fbtracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="38C-mi-1B9" id="DoM-VW-Xx8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlo-IC-0jM">
@@ -52,7 +52,7 @@
                             <outlet property="delegate" destination="K9u-2d-xMv" id="ppJ-uf-hnB"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Matchew" image="house.png" id="i7g-N8-ZyY"/>
+                    <tabBarItem key="tabBarItem" title="Matches" image="house.png" id="i7g-N8-ZyY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubb-vY-20u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,29 +71,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="last run time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHo-Hg-Wdu">
-                                <rect key="frame" x="16" y="40" width="343" height="47"/>
+                                <rect key="frame" x="16" y="99" width="343" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c76-mX-ZU4">
-                                <rect key="frame" x="16" y="83" width="343" height="47"/>
+                                <rect key="frame" x="16" y="142" width="343" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="last match time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ape-hd-YxB">
-                                <rect key="frame" x="16" y="164" width="343" height="47"/>
+                                <rect key="frame" x="16" y="223" width="343" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBK-y3-N1c">
-                                <rect key="frame" x="16" y="207" width="343" height="47"/>
+                                <rect key="frame" x="16" y="266" width="343" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 Posts - 1 Matches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFs-4D-gHY">
+                                <rect key="frame" x="16" y="28" width="343" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -103,6 +109,7 @@
                     <connections>
                         <outlet property="lastMatchTime" destination="kBK-y3-N1c" id="i8O-o5-586"/>
                         <outlet property="lastRunTime" destination="c76-mX-ZU4" id="faO-S6-3Jd"/>
+                        <outlet property="postsCount" destination="qFs-4D-gHY" id="Hj6-Si-RaY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48M-bl-bLR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,8 +153,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="omJ-yI-UJp" kind="relationship" relationship="viewControllers" id="RdO-Da-M8e"/>
                         <segue destination="K9u-2d-xMv" kind="relationship" relationship="viewControllers" id="RmC-8y-N31"/>
+                        <segue destination="omJ-yI-UJp" kind="relationship" relationship="viewControllers" id="RdO-Da-M8e"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8t-Gi-uTB" userLabel="First Responder" sceneMemberID="firstResponder"/>

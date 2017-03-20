@@ -54,6 +54,16 @@ class MatchesViewController: UITableViewController {
         let match = self.matches[indexPath.row]
         UIApplication.shared.open(URL(string: match.link)!, options: [:], completionHandler: nil)
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:{action, indexpath in
+            print("fav");
+        });
+        favoriteAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        
+        return [favoriteAction];
+    }
 }
 
 class MatchViewCell: UITableViewCell {
