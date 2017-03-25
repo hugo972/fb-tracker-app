@@ -38,14 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
-        if (self.backgroundTime != nil) {
-            let wakeTime = Date()
-            self.backgroundTime?.addTimeInterval(60 * 5)
-            if (self.backgroundTime! > wakeTime) {
-                return
-            }
+        if (self.backgroundTime == nil) {
+            return
         }
         
+        let wakeTime = Date()
+        self.backgroundTime?.addTimeInterval(60 * 5)
+        if (self.backgroundTime! > wakeTime) {
+            return
+        }
+
         DispatchQueue.main.async {
             let mainVC = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
             self.window?.rootViewController = mainVC
