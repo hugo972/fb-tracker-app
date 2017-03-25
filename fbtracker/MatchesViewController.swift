@@ -8,17 +8,16 @@
 
 import UIKit
 
-class MatchesViewController: UITableViewController {
-
+class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     var matches = [(String, [Match])]()
     var postsIndex = [String: Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.isOpaque = true
-        
+
         let dateFor: DateFormatter = DateFormatter()
         dateFor.dateFormat = "dd/MM/yyyy"
 
@@ -41,26 +40,29 @@ class MatchesViewController: UITableViewController {
         matchesMap.keys.sorted(by: { $0 > $1 }).forEach { matchDate in
             matches.append((matchDate, (matchesMap[matchDate]?.sorted(by: { (self.postsIndex[$0.id]?.time)! > (self.postsIndex[$1.id]?.time)! }))!))
         }
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.matches.count
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.matches[section].0
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.matches[section].1.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "MatchViewCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MatchViewCell  else {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MatchViewCell  else {
             fatalError("The dequeued cell is not an instance of MatchViewCell.")
         }
         
@@ -77,12 +79,12 @@ class MatchesViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let match = self.matches[indexPath.section].1[indexPath.row]
         UIApplication.shared.open(URL(string: match.link)!, options: [:], completionHandler: nil)
     }
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let favoriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Favorite", handler:{action, indexpath in
             print("fav");
